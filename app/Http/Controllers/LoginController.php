@@ -20,4 +20,9 @@ class LoginController extends Controller
         }
         return redirect()->to('/');
     }
+
+    public function logout()
+    {
+        
+    }
 }
