@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\CartItems;
 use Illuminate\Http\Request;
-use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Products;
 
 
 class CartController extends Controller
@@ -46,11 +46,11 @@ class CartController extends Controller
 
     public function viewCart()
     {
-        $cart = Cart::where('user_id', auth()->id())->with('cartItems')->first();
-       
-        return response()->json(['cart' => $cart]);
-
-
+        
+        $user_id = auth()->id();
+        
+        $cart = Cart::where('user_id', $user_id)->with('cartItems')->first();
+        
 
         return view('cart.viewCart', ['cart' => $cart]);
     }
