@@ -13,13 +13,17 @@ class LoginController extends Controller
         return view('login.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         if (auth()->attempt(request(['email', 'password'])) == false) {
             return back()->withErrors([
                 'msg' => 'Wrong email or password, try again!'
             ]);
         }
+
+        $user = Auth::user();
+
+        $request->session()->flash('flash_notification.success', 'Welcome back!');
         return redirect()->to('/');
     }
 

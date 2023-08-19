@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
@@ -46,3 +47,7 @@ Route::post('addToCart', [CartController::class, 'addToCart'])->name('cart.add')
 
 // account
 Route::get('account', [UserController::class, 'account']);
+
+// checkout
+Route::get('checkout', [OrderController::class, 'checkout']);
+Route::get('show', [OrderController::class, 'show']);
