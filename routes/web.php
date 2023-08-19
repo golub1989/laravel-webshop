@@ -5,6 +5,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -30,6 +31,9 @@ Route::get('register', [RegistrationController::class, 'create']);
 Route::get('login', [LoginController::class, 'create']);
 Route::post('login', [LoginController::class, 'store']);
 
+// logout
+Route::get('logout', [LoginController::class, 'logout']);
+
 // products
 Route::get('products', [ProductController::class, 'products']);
 Route::get('product/{id}', [ProductController::class, 'product']);
@@ -39,3 +43,6 @@ Route::get('cart', [CartController::class, 'cart']);
 Route::get('viewCart', [CartController::class, 'viewCart'])->name('cart.viewCart');
 
 Route::post('addToCart', [CartController::class, 'addToCart'])->name('cart.add');
+
+// account
+Route::get('account', [UserController::class, 'account']);
