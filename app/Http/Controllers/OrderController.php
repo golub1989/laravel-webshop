@@ -33,7 +33,7 @@ class OrderController extends Controller
             ]);
         }
 
-        $cart->cartItems()->delete();
+        //$cart->cartItems()->delete();
 
         //return redirect()->route('order.show', $order->id)->with('success', 'Order placed successfully.');
         return redirect()->to('show');
@@ -46,7 +46,6 @@ class OrderController extends Controller
         
         $orders = Order::where('user_id', $user_id)->with('orderItems')->first();
         
-
         //return view('cart.viewCart', ['cart' => $cart]);
         return view('order.show', ['orders' => $orders]);
     }

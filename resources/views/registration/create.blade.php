@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-</head>
-<body>
+@extends('welcome')
+@section('content')
     <div id="heading">
-        <h1>Registration</h1>
+        <h1 class="register">Registration</h1>
     </div>
     <form method="POST" action="/register">
     {{ csrf_field() }}
@@ -30,7 +24,9 @@
             <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
-   
-</body>
-</html>
 
+    <div class="login-redirect">
+         <p>Already have an account? Sign-in <span class="login-alert"><a href="{{ url('login') }}">here</a></span>
+     </div>
+
+@endsection

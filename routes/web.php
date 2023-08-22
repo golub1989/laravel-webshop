@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,11 +38,13 @@ Route::get('logout', [LoginController::class, 'logout']);
 
 // products
 Route::get('products', [ProductController::class, 'products']);
+// match single product 
 Route::get('product/{id}', [ProductController::class, 'product']);
 
 // cart
 Route::get('cart', [CartController::class, 'cart']);
 Route::get('viewCart', [CartController::class, 'viewCart'])->name('cart.viewCart');
+Route::get('delete', [CartController::class, 'delete']);
 
 Route::post('addToCart', [CartController::class, 'addToCart'])->name('cart.add');
 

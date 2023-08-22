@@ -1,5 +1,8 @@
 @extends('welcome')
 @section('content')
+<div id="heading">
+        <h1 class="login">Sign-in</h1>
+    </div>
 <form method="POST" action="/login">
         {{ csrf_field() }}
         <div class="form-group">
@@ -17,7 +20,7 @@
         </div>
 
         <div class="register-redirect">
-            <p>You have not account? Register <a href="{{ url('register') }}">here</a>
+            <p>You don't have an account? Register <span class="alert-register"><a href="{{ url('register') }}">here</a></span>
         </div>
 
     </form>
