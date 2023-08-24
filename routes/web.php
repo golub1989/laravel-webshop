@@ -44,8 +44,8 @@ Route::get('product/{id}', [ProductController::class, 'product']);
 // cart
 Route::get('cart', [CartController::class, 'cart']);
 Route::get('viewCart', [CartController::class, 'viewCart'])->name('cart.viewCart');
-Route::get('delete', [CartController::class, 'delete']);
-
+Route::get('cart/destroy/{cartItemId}', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::get('cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::post('addToCart', [CartController::class, 'addToCart'])->name('cart.add');
 
 // account

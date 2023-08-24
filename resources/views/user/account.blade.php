@@ -1,7 +1,26 @@
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus luctus fringilla sem. 
-Vivamus et fermentum eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean at malesuada enim, a dignissim odio. Ut ut blandit massa, at porta neque. 
-Nulla pulvinar purus et gravida auctor. Vestibulum vel metus finibus, scelerisque tortor ut, blandit turpis. Vivamus bibendum interdum semper.
-</p>
+@extends('welcome')
+@section('content')
+<h1 style="text-align:center">My orders</h1>
 
-<a href="#change-pass">Change password</a>
+    @php 
+         $currency = '$';
+    @endphp
+@php
+    $totalPrice = 0;
+@endphp
+@if (count($orders) > 0) 
+@foreach ($orders as $order)
+        <div class="order">
+           
+            <ul>
+                @foreach ($order->orderItems as $item)
+                    <li>{{ $item->product->name }} - Quantity: {{ $item->quantity }}</li>
+                @endforeach
+            </ul>
+        </div>
+        
+    @endforeach
+    @else 
+        <p>You don't have any orders yet.</p>
+    @endif
+ @endsection

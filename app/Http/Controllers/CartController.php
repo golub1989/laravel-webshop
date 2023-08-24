@@ -22,7 +22,7 @@ class CartController extends Controller
         $user = Auth::user();
 
         if (!$user) {
-            return redirect()->to('/login');
+            return redirect()->intended('/login');
         }
 
         $cart = Cart::where('user_id', $user->id)->firstOrCreate(['user_id' => $user->id]);
@@ -55,20 +55,26 @@ class CartController extends Controller
         return view('cart.viewCart', ['cart' => $cart]);
     }
 
-    public function delete()
+    public function destroy($cartItemId)
     {
-        $user = auth()->user();
-
-        if ($user) {
-            $cart = $user->cart;
-    
-                \DB::table('cart_items')->where('cart_id', $cart->id)->delete();
-                
-                //$cart->delete();
-                
-                return view('cart.viewCart', []);
         
-            
+        $item = CartItems::findOrFail($cartItemId)->delete();
+
+        return redirect()->back()->with('success', 'Item removed from cart.');
+    }
+
+    public function clear()
+    {
+        $user_id = auth()->id();
+
+        $cart = Cart::where('user_id', $user_id)->first();
+
+        if ($cart) {
+            $cart->cartItems()->delete();
+
+            return redirect()->back()->with('success', 'Cart cleared.');
         }
+
+        return redirect()->back()->with('error', 'No cart found.');
     }
 }
