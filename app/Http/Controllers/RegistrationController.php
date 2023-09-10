@@ -15,9 +15,13 @@ class RegistrationController extends Controller
 
     public function store()
     {
-        $this->validate(request(), ['name' => 'required', 'email' => 'required|email', 'password' => 'required']);
+        $validator = $this->validate(request(), ['name' => 'required', 'email' => 'required|unique:users', 'password' => 'required|min:8']);
 
+        if (!$validator) {
+            return redirect()->back()->withErrors($validator);
+        }
         $user = User::create(request(['name', 'email', 'password']));
+
         Auth::login($user);
 
         return redirect()->to('/login');

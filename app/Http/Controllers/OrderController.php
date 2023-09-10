@@ -35,20 +35,18 @@ class OrderController extends Controller
 
         $cart->cartItems()->delete();
 
-        //return redirect()->route('order.show', $order->id)->with('success', 'Order placed successfully.');
-        return redirect()->to('/');
+        return redirect()->to('/show');
     }
 
-    public function show()
+    public function orders()
     {
 
         $user_id = auth()->id();
         
         $orders = Order::where('user_id', $user_id)->with('orderItems')->get();
 
-        dd($orders);
-        
-        //return view('cart.viewCart', ['cart' => $cart]);
-        return view('user.account', ['orders' => $orders]);
+        session()->forget('cartCount');
+
+        return view('order.show', ['orders' => $orders]);
     }
 }
