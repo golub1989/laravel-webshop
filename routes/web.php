@@ -57,7 +57,7 @@ Route::post('update-password', [UserController::class, 'store']);
 
 // checkout
 Route::get('checkout', [OrderController::class, 'checkout'])->name('checkout');
-Route::get('orders', [OrderController::class, 'orders'])->name('orders');
+Route::get('show', [OrderController::class, 'show'])->name('orders');
 
 // search
 Route::get('/search', [SearchController::class, 'search'])->name('search');

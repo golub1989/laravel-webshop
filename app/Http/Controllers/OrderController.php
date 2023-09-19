@@ -38,7 +38,7 @@ class OrderController extends Controller
         return redirect()->to('/show');
     }
 
-    public function orders()
+    public function show()
     {
 
         $user_id = auth()->id();

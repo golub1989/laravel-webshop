@@ -59,6 +59,9 @@
                         product_id: product_id,
                         action: action,
                     },
+
+                    // var priceElement = form.find('.price')
+
                     success: function (response) {
                         console.log(response);
                         let quantityElement = form.find('.quantity');
